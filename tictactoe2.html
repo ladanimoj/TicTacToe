@@ -1,0 +1,148 @@
+
+<html>
+<head>
+  <title>Tic-Tac-Toe Game</title>
+  <style>
+    /* Add some styles to the buttons */
+    .game-button 
+    {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #fa0606;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+ <script>
+    const matrix = 
+    [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+  ];
+  
+  let currentPlayer= "X";
+  let gameover = false;
+  //let P2 = "O";
+  function placeSymbol(row, column) 
+  {
+
+
+      if (!gameOver && matrix[row][column] === '') 
+      {
+        matrix[row][column] = currentPlayer;
+//console.log(currentPlayer);
+        document.getElementById(`button-${row}-${column}`).innerText = currentPlayer;
+
+        if (checkWinner()) 
+        {
+          gameOver = true;
+          alert(`Player ${currentPlayer} wins!`);
+        } 
+        else if (checkTie()) 
+        {
+          gameOver = true;
+          alert("It's a tie!");
+        } 
+        else 
+        {
+          currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+      }
+    }
+    function checkWinner() 
+    {
+      for (let i = 0; i < 3; i++) 
+      {
+        // Check columns
+        if (matrix[0][i] === currentPlayer && matrix[1][i] === currentPlayer && matrix[2][i] === currentPlayer) 
+        {
+          return true;
+        }
+  
+        // Check rows
+        if (matrix[i][0] === currentPlayer && matrix[i][1] === currentPlayer && matrix[i][2] === currentPlayer) 
+        {
+          return true;
+        }
+      }
+  
+      // Check diagonals
+      if (matrix[0][0] === currentPlayer && matrix[1][1] === currentPlayer && matrix[2][2] === currentPlayer) 
+      {
+        return true;
+      }
+      if (matrix[0][2] === currentPlayer && matrix[1][1] === currentPlayer && matrix[2][0] === currentPlayer) 
+      {
+        return true;
+      }
+  
+      return false;
+    }
+
+    function checkTie()
+     {
+      for (let row of matrix)
+       {
+        if (row.includes(''))
+         {
+          return false; // There are still empty cells
+        }
+      }
+      return true; // All cells are filled
+    }
+    
+</script>
+</head>
+<body>
+  <h1>Tic-Tac-Toe Game</h1>
+
+  <table>
+    <tr>
+      <td><button id="button-0-0" class="game-button"onclick="placeSymbol(0, 0)">-</button></td>
+      <td><button id="button-0-1" class="game-button"onclick="placeSymbol(0, 1)">-</button></td>
+      <td><button id="button-0-2" class="game-button"onclick="placeSymbol(0, 2)">-</button></td>
+    </tr>
+    <tr>
+      <td><button id="button-1-0" class="game-button"onclick="placeSymbol(1, 0)">-</button></td>
+      <td><button id="button-1-1" class="game-button"onclick="placeSymbol(1, 1)">-</button></td>
+      <td><button id="button-1-2" class="game-button"onclick="placeSymbol(1, 2)">-</button></td>
+    </tr>
+    <tr>
+      <td><button id="button-2-0" class="game-button"onclick="placeSymbol(2, 0)">-</button></td>
+      <td><button id="button-2-1" class="game-button"onclick="placeSymbol(2, 1)">-</button></td>
+      <td><button id="button-2-2" class="game-button"onclick="placeSymbol(2, 2)">-</button></td>
+    </tr>
+  </table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    
+   
+  
+  
+
+  
+
